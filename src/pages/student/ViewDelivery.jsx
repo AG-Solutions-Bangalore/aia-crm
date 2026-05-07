@@ -69,7 +69,7 @@ const ViewDelivery = () => {
             <div>
               <Card className="mt-4">
                 <CardBody>
-                  <div className="flex justify-center md:h-[150px] h-full ">
+                  <div className="flex justify-center md:h-[280px] h-full ">
                     {" "}
                     <div className="space-y-2">
                       <Typography className="text-black">
@@ -106,13 +106,14 @@ const ViewDelivery = () => {
                           Tracking URL : {student.delivery_tracking_url}
                         </strong>
                       </Typography>
+                      <Typography className="text-black">
+                        <strong>
+                          Delivery Location : {student.delivery_location}
+                        </strong>
+                      </Typography>
                     </div>
                   </div>
-                  <div className="flex justify-center mt-24">
-                    <button onClick={handleBackButton} className={ButtonBack}>
-                      Back
-                    </button>
-                  </div>
+                 
                 </CardBody>
               </Card>
             </div>

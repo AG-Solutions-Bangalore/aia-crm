@@ -52,6 +52,7 @@ const EditDelivery = () => {
     delivery_status: "",
     delivery_date: "",
     delivery_tracking_url: "",
+    delivery_location:"",
   });
 
   useEffect(() => {
@@ -164,6 +165,7 @@ const EditDelivery = () => {
       delivery_status: student.delivery_status,
       delivery_date: student.delivery_date,
       delivery_tracking_url: deliverymodeURL,
+      delivery_location:student.delivery_location,
     };
     try {
       const response = await axios.put(
@@ -276,6 +278,7 @@ const EditDelivery = () => {
                   onChange={(e) => onInputChange(e)}
                 />
               </div>
+                
               {/* Delivery Date */}
               <div>
                 <Input
@@ -312,9 +315,11 @@ const EditDelivery = () => {
                   options={ss}
                 />
               </div>
+             
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-              <div className="col-span-5">
+              <div className="col-span-3">
                 <Fields
                   required={true}
                   types="text"
@@ -323,6 +328,17 @@ const EditDelivery = () => {
                   autoComplete="Name"
                   name="delivery_tracking_url"
                   value={deliverymodeURL}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+               <div className="col-span-2">
+                <Input
+                  
+                  label="Delivery location"
+                  type="text"
+                  autoComplete="Name"
+                  name="delivery_location"
+                  value={student.delivery_location}
                   onChange={(e) => onInputChange(e)}
                 />
               </div>

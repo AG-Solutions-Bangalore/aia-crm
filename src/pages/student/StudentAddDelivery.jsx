@@ -25,6 +25,7 @@ const StudentAddDelivery = () => {
     delivery_shipping_date: "",
     delivery_status: "Pending",
     delivery_tracking_url: "",
+    delivery_location: "",
   });
 
   useEffect(() => {
@@ -102,6 +103,7 @@ const StudentAddDelivery = () => {
       delivery_shipping_date: student.delivery_shipping_date,
       delivery_status: student.delivery_status,
       delivery_tracking_url: student.delivery_tracking_url,
+      delivery_location: student.delivery_location, 
     };
     try {
       const response = await axios.post(
@@ -203,6 +205,17 @@ const StudentAddDelivery = () => {
                   autoComplete="Name"
                   name="delivery_tracking_number"
                   value={student.delivery_tracking_number}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+               <div>
+                <Input
+                  fullWidth
+                  label="Delivery Location"
+                  
+                  autoComplete="Name"
+                  name="delivery_location"
+                  value={student.delivery_location}
                   onChange={(e) => onInputChange(e)}
                 />
               </div>

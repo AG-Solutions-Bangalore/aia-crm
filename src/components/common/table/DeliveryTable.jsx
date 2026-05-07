@@ -16,6 +16,7 @@ const DeliveryTable = (props) => {
             <th class="py-3 px-6 text-center">Tracking Number</th>
             <th class="py-3 px-6 text-center">Shipping Date</th>
             <th class="py-3 px-6 text-center">Delivery Date</th>
+            <th class="py-3 px-6 text-center">Delivery Location</th>
             <th class="py-3 px-6 text-center">Status</th>
             <th class="py-3 px-6 text-center">Action</th>
           </tr>
@@ -54,6 +55,9 @@ const DeliveryTable = (props) => {
                     ? ""
                     : moment(dataSumm.delivery_date).format("DD-MM-YYYY")}
                 </span>
+              </td>
+              <td class="py-3 px-6 text-center">
+                <span> {dataSumm.delivery_location}</span>
               </td>
               <td class="py-3 px-6 text-center">
                 <span>{dataSumm.delivery_status}</span>

@@ -280,6 +280,14 @@ const DeliveredListDelivery = () => {
         },
       },
     },
+     {
+      name: "delivery_location",
+      label: "Location",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
     {
       name: "delivery_status",
       label: "Status",
@@ -487,6 +495,9 @@ const DeliveredListDelivery = () => {
                     <td className="p-2 font-semibold">Tracking URL </td>
                   </tr>
                   <tr>
+                    <td className="p-2 font-semibold">Delivery Location </td>
+                  </tr>
+                  <tr>
                     <td className="p-2 font-semibold">Status </td>
                   </tr>
                 </thead>
@@ -526,6 +537,9 @@ const DeliveredListDelivery = () => {
                   </tr>
                   <tr>
                     <td className="p-2">: {student.delivery_tracking_url}</td>
+                  </tr>
+                  <tr>
+                    <td className="p-2">: {student.delivery_location}</td>
                   </tr>
                   <tr>
                     <td className="p-2">: {student.delivery_status}</td>
