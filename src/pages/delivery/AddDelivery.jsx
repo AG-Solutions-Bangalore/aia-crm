@@ -24,6 +24,7 @@ const AddDelivery = () => {
     delivery_shipping_date: "",
     delivery_status: "Pending",
     delivery_tracking_url: "",
+    delivery_location:"",
   });
 
   const [useruid, setUserUID] = useState([]);
@@ -117,6 +118,7 @@ const AddDelivery = () => {
       delivery_shipping_date: student.delivery_shipping_date,
       delivery_status: student.delivery_status,
       delivery_tracking_url: student.delivery_tracking_url,
+      delivery_location: student.delivery_location,
     };
     try {
       const response = await axios.post(
@@ -229,6 +231,18 @@ const AddDelivery = () => {
                   autoComplete="Name"
                   name="delivery_tracking_number"
                   value={student.delivery_tracking_number}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
+               <div>
+                <Fields
+                  required={false}
+                  types="text"
+                  title="Delivery location"
+                  type="textField"
+                  autoComplete="Name"
+                  name="delivery_location"
+                  value={student.delivery_location}
                   onChange={(e) => onInputChange(e)}
                 />
               </div>

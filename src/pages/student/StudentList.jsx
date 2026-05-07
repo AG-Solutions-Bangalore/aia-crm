@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Chip } from "@mui/material";
 import axios from "axios";
 import moment from "moment";
 import MUIDataTable from "mui-datatables";
@@ -14,10 +14,10 @@ const StudentList = () => {
   const [studentListData, setStudentListData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [enquiryDate, setEnquiryDate] = useState(
-    localStorage.getItem("enquiry_date_student_filter") || ""
+    localStorage.getItem("enquiry_date_student_filter") || "",
   );
   const [regDate, setRegDate] = useState(
-    localStorage.getItem("reg_date_student_filter") || ""
+    localStorage.getItem("reg_date_student_filter") || "",
   );
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -36,7 +36,7 @@ const StudentList = () => {
         params.set("page", "0");
         return params;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -47,7 +47,7 @@ const StudentList = () => {
         params.set("page", currentPage.toString());
         return params;
       },
-      { replace: true }
+      { replace: true },
     );
   };
 
@@ -62,7 +62,7 @@ const StudentList = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
 
         const res = response.data?.student;
@@ -128,11 +128,22 @@ const StudentList = () => {
       },
     },
     {
-      name: "qualification",
-      label: "Qualification",
+      name: "courses",
+      label: "Courses",
       options: {
         filter: false,
         sort: false,
+        customBodyRender: (value) => {
+          return value && value.length > 0 ? (
+            <div className="flex flex-wrap gap-1">
+              {value.map((course, index) => (
+                <p key={index}>{course.course_opted}</p>
+              ))}
+            </div>
+          ) : (
+            ""
+          );
+        },
       },
     },
     {
@@ -262,7 +273,7 @@ const StudentList = () => {
                   setEnquiryDate(e.target.value);
                   localStorage.setItem(
                     "enquiry_date_student_filter",
-                    e.target.value
+                    e.target.value,
                   );
                 }}
               ></Input>
@@ -275,7 +286,7 @@ const StudentList = () => {
                   setRegDate(e.target.value);
                   localStorage.setItem(
                     "reg_date_student_filter",
-                    e.target.value
+                    e.target.value,
                   );
                 }}
               ></Input>
