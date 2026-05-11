@@ -53,7 +53,7 @@ const ViewEnquiry = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          }
+          },
         );
 
         setEnquiry(response.data.enquiry);
@@ -87,7 +87,7 @@ const ViewEnquiry = () => {
     Office No: 0129-417-4177\n
     Toll free: 1800-1200-2555`;
     const whatsappLink = `https://wa.me/${code}${phoneNumber}?text=${encodeURIComponent(
-      message
+      message,
     )}`;
 
     let data = {
@@ -103,7 +103,8 @@ const ViewEnquiry = () => {
     }).then((res) => {
       if (res.data.code == 200) {
         window.open(whatsappLink, "_blank");
-        const backUrl = localStorage.getItem("enquiry_page") || "/openList-enquiry";
+        const backUrl =
+          localStorage.getItem("enquiry_page") || "/openList-enquiry";
         navigate(`${backUrl}${location.search}`);
       } else {
         toast.error("Whats App Not Sent Sucessfully");
@@ -134,7 +135,7 @@ const ViewEnquiry = () => {
     Office No: 0129-417-4177\n
     Toll free: 1800-1200-2555`;
     const whatsappLink = `https://wa.me/${code}${phoneNumber}?text=${encodeURIComponent(
-      message
+      message,
     )}`;
 
     let data = {
@@ -150,7 +151,8 @@ const ViewEnquiry = () => {
     }).then((res) => {
       if (res.data.code == "200") {
         window.open(whatsappLink, "_blank");
-        const backUrl = localStorage.getItem("enquiry_page") || "/openList-enquiry";
+        const backUrl =
+          localStorage.getItem("enquiry_page") || "/openList-enquiry";
         navigate(`${backUrl}${location.search}`);
       } else {
         toast.error("Whats App Not Sent Sucessfully");
@@ -175,7 +177,8 @@ const ViewEnquiry = () => {
     }).then((res) => {
       if (res.data.code == 200) {
         toast.success("Email Sent Sucessfully");
-        const backUrl = localStorage.getItem("enquiry_page") || "/openList-enquiry";
+        const backUrl =
+          localStorage.getItem("enquiry_page") || "/openList-enquiry";
         navigate(`${backUrl}${location.search}`);
         setIsButtonDisabled(false);
       } else {
@@ -210,7 +213,7 @@ const ViewEnquiry = () => {
             {/* Right Section */}
             <div className="mb-4 mt-6 md:w-[30%] w-full flex gap-2">
               {["New Enquiry", "Postponed", "In Process"].includes(
-                enquiry.enquiry_status
+                enquiry.enquiry_status,
               ) && (
                 <EnquiryViewWhatsapp
                   onClick={
@@ -264,7 +267,9 @@ const ViewEnquiry = () => {
                     </div>
                     <div className="space-y-2">
                       <Typography className="text-black">
-                        <strong>Full Name : {enquiry.enquiry_full_name}</strong>{" "}
+                        <strong>
+                          Full Name : {enquiry.enquiry_full_name}
+                        </strong>{" "}
                       </Typography>
                       <Typography className="text-black">
                         <strong>
@@ -286,7 +291,9 @@ const ViewEnquiry = () => {
                         </strong>
                       </Typography>
                       <Typography className="text-black">
-                        <strong>Category : {enquiry.enquiry_category}</strong>{" "}
+                        <strong>
+                          Category : {enquiry.enquiry_category}
+                        </strong>{" "}
                       </Typography>
                       <Typography className="text-black">
                         <strong>
@@ -295,10 +302,13 @@ const ViewEnquiry = () => {
                         </strong>
                       </Typography>
                       <Typography className="text-black">
+                        <strong>Campaign : {enquiry.enquiry_campaign}</strong>
+                      </Typography>
+                      <Typography className="text-black">
                         <strong>
                           New Followup Date :{" "}
                           {moment(enquiry.enquiry_follow_date).format(
-                            "DD-MM-YYYY"
+                            "DD-MM-YYYY",
                           )}
                         </strong>
                       </Typography>
@@ -343,7 +353,7 @@ const ViewEnquiry = () => {
                                 {dataSumm.follow_up_date == null
                                   ? ""
                                   : moment(dataSumm.follow_up_date).format(
-                                      "DD-MM-YYYY"
+                                      "DD-MM-YYYY",
                                     )}
                               </span>
                             </div>
@@ -354,7 +364,7 @@ const ViewEnquiry = () => {
                                 {dataSumm.follow_up_next_date == null
                                   ? ""
                                   : moment(dataSumm.follow_up_next_date).format(
-                                      "DD-MM-YYYY"
+                                      "DD-MM-YYYY",
                                     )}
                               </span>
                             </div>
