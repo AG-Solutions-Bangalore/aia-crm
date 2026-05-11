@@ -94,6 +94,7 @@ const CreateEnquiry = () => {
     enquiry_source_other: "",
     enquiry_dob: "",
     enquiry_employee_name: "",
+    enquiry_campaign: "",
   });
   const [course, setCourse] = useState([]);
   const [country, setCountry] = useState([]);
@@ -121,6 +122,7 @@ const CreateEnquiry = () => {
         enquiry_source_other: "",
         enquiry_dob: "",
         enquiry_employee_name: "",
+        enquiry_campaign: "",
       });
     });
   }, [id]);
@@ -133,7 +135,7 @@ const CreateEnquiry = () => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        }
+        },
       );
       const employees = response.data.employee || [];
 
@@ -227,6 +229,7 @@ const CreateEnquiry = () => {
       enquiry_source_other: enquiry.enquiry_source_other,
       enquiry_dob: enquiry.enquiry_dob,
       enquiry_employee_name: enquiry.enquiry_employee_name,
+      enquiry_campaign: enquiry.enquiry_campaign,
     };
     try {
       const response = await axios.post(
@@ -237,7 +240,7 @@ const CreateEnquiry = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
 
       if (response.data.code == 200) {
@@ -438,15 +441,28 @@ const CreateEnquiry = () => {
                   />
                 </div>
               )}
-              <Fields
-                title="Employee Name"
-                type="whatsappDropdown"
-                autoComplete="Name"
-                name="enquiry_employee_name"
-                value={enquiry.enquiry_employee_name}
-                onChange={(e) => onInputChange(e)}
-                options={employedata}
-              />
+              <div>
+                <Fields
+                  title="Employee Name"
+                  type="whatsappDropdown"
+                  autoComplete="Name"
+                  name="enquiry_employee_name"
+                  value={enquiry.enquiry_employee_name}
+                  onChange={(e) => onInputChange(e)}
+                  options={employedata}
+                />
+              </div>
+              <div>
+                <Fields
+                  required={true}
+                  title="Campaign"
+                  type="textField"
+                  autoComplete="Name"
+                  name="enquiry_campaign"
+                  value={enquiry.enquiry_campaign}
+                  onChange={(e) => onInputChange(e)}
+                />
+              </div>
             </div>
             <div className="mt-4 text-center">
               <button
