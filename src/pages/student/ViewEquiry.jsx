@@ -26,7 +26,6 @@ const ViewStudentEquiry = () => {
 
   const navigate = useNavigate();
 
-
   const [enquiry, setEnquiry] = useState({});
   const [followup, setFollowUp] = useState([]);
 
@@ -47,7 +46,7 @@ const ViewStudentEquiry = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          }
+          },
         );
 
         setEnquiry(res.data.enquiry);
@@ -78,7 +77,7 @@ const ViewStudentEquiry = () => {
             />
 
             <h1 className="text-2xl text-[#464D69] font-semibold ml-2 content-center">
-              View Enquiry 
+              View Enquiry
             </h1>
           </div>
 
@@ -153,7 +152,7 @@ const ViewStudentEquiry = () => {
                         <strong>
                           Next Followup Date :{" "}
                           {moment(enquiry.enquiry_follow_date).format(
-                            "DD-MM-YYYY"
+                            "DD-MM-YYYY",
                           )}
                         </strong>{" "}
                       </Typography>
@@ -161,16 +160,16 @@ const ViewStudentEquiry = () => {
                         <strong>Status : {enquiry.enquiry_status}</strong>
                       </Typography>
                       <Typography className="text-black">
-                        <strong>Category : {enquiry.enquiry_category}</strong>{" "}
+                        <strong>
+                          Category : {enquiry.enquiry_category}
+                        </strong>{" "}
                       </Typography>
                     </div>
                   </div>
                   <Typography className="text-black mt-2">
-                    <strong >
-                      Remarks : {enquiry.enquiry_remarks}
-                    </strong>
+                    <strong>Remarks : {enquiry.enquiry_remarks}</strong>
                   </Typography>
-        
+
                   <div className="flex justify-center ">
                     <button onClick={handleBackButton} className={ButtonBack}>
                       Back

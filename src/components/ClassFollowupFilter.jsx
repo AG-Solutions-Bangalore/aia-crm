@@ -18,6 +18,11 @@ const ClassFollowUpFilter = () => {
       path: "/class-completed-followup",
       color: "from-blue-500 to-cyan-400",
     },
+    {
+      label: "Follow-up List",
+      path: "/class-follow-up-list",
+      color: "from-blue-500 to-cyan-400",
+    },
   ];
   return (
     <div className="flex flex-wrap justify-between mt-6 gap-4">

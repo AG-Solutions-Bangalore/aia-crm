@@ -102,6 +102,7 @@ import NotFound from "./components/common/NotFound";
 import TaskManager from "./pages/Dowloads/taskmanager/TaskManagerDownload";
 import TaskManagerReport from "./pages/Dowloads/taskmanager/TaskManagerReport";
 import FutureListTask from "./pages/taskManager/futureList/FutureListTask";
+import ClassFollowUpList from "./pages/classFollowup/ClassFollowUpList";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -230,6 +231,10 @@ const App = () => {
           <Route
             path="/class-completed-followup"
             element={<ProtectedRoute element={<CompletedFollowUp />} />}
+          />
+          <Route
+            path="/class-follow-up-list"
+            element={<ProtectedRoute element={<ClassFollowUpList />} />}
           />
           <Route
             path="/view-completed-followup/:id"
