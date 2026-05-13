@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -68,7 +73,7 @@ const AddRepetitive = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          }
+          },
         );
         setTaskDetails(response.data.userList);
       } catch (error) {
@@ -109,12 +114,12 @@ const AddRepetitive = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
 
       if (response.data.code == "200") {
         toast.success("Data Updated Successfully");
-        navigate(`/task-repetitive${location.search}`);
+        navigate(`/task-pending${location.search}`);
       } else {
         if (response.data.code == "401") {
           toast.error("Task Duplicate Entry");
@@ -138,12 +143,12 @@ const AddRepetitive = () => {
         {/* Title */}
         <div className="flex mb-4 mt-6">
           <MdKeyboardBackspace
-            onClick={() => navigate(`/task-repetitive${location.search}`)}
+            onClick={() => navigate(`/task-pending${location.search}`)}
             className=" text-white bg-[#464D69] p-1 w-10 h-8 cursor-pointer rounded-2xl"
           />
 
           <h1 className="text-2xl text-[#464D69] font-semibold ml-2 content-center">
-            Add Repetitive Task
+            Add Repetitive Tasks
           </h1>
         </div>
         <div className="p-6 mt-5 bg-white shadow-md rounded-lg">
@@ -212,7 +217,7 @@ const AddRepetitive = () => {
               </button>
               <button
                 type="button"
-                onClick={() => navigate(`/task-repetitive${location.search}`)}
+                onClick={() => navigate(`/task-pending${location.search}`)}
                 className={ButtonBack}
               >
                 Back

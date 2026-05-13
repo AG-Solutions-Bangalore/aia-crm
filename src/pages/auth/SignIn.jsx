@@ -60,7 +60,7 @@ const SignIn = () => {
         }
       } else {
         toast.error(
-          res.data.msg || "Login Failed, Please check your credentials."
+          res.data.msg || "Login Failed, Please check your credentials.",
         );
       }
     } catch (error) {
