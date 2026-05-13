@@ -19,7 +19,7 @@ const RepetitiveList = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedIds, setSelectedIds] = useState([]);
-  
+
   const pageParam = parseInt(searchParams.get("page") || "0", 10);
   const searchParam = searchParams.get("search") || "";
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -33,7 +33,7 @@ const RepetitiveList = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       let res = response.data?.taskmanager;
@@ -64,7 +64,7 @@ const RepetitiveList = () => {
           const currentPageRows =
             repetitiveListData?.slice(
               pageParam * rowsPerPage,
-              pageParam * rowsPerPage + rowsPerPage
+              pageParam * rowsPerPage + rowsPerPage,
             ) || [];
 
           const pageIds = currentPageRows.map((item) => item.id);
@@ -84,7 +84,7 @@ const RepetitiveList = () => {
                   if (allSelected) {
                     // remove current page IDs
                     setSelectedIds(
-                      selectedIds.filter((id) => !pageIds.includes(id))
+                      selectedIds.filter((id) => !pageIds.includes(id)),
                     );
                   } else {
                     // add only current page IDs
@@ -111,7 +111,7 @@ const RepetitiveList = () => {
                   setSelectedIds(
                     isChecked
                       ? selectedIds.filter((id) => id !== rowId)
-                      : [...selectedIds, rowId]
+                      : [...selectedIds, rowId],
                   );
                 }}
               />
@@ -171,7 +171,9 @@ const RepetitiveList = () => {
           return (
             <div className="flex items-center space-x-2">
               <TaskManagerRepetitiveEdit
-                onClick={(e) => navigate(`/update-repetitive/${id}${location.search}`)}
+                onClick={(e) =>
+                  navigate(`/update-repetitive/${id}${location.search}`)
+                }
                 className="h-5 w-5 cursor-pointer"
               />
             </div>
@@ -200,7 +202,7 @@ const RepetitiveList = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.data.code == "200") {
@@ -236,7 +238,10 @@ const RepetitiveList = () => {
     onTableChange: (action, tableState) => {
       switch (action) {
         case "changePage":
-          setSearchParams({ search: tableState.searchText || "", page: tableState.page.toString() });
+          setSearchParams({
+            search: tableState.searchText || "",
+            page: tableState.page.toString(),
+          });
           break;
 
         case "changeRowsPerPage":

@@ -145,7 +145,7 @@ const EditRepetitive = () => {
 
       if (response.data.code == "200") {
         toast.success(response.data.msg || "Data Updated Successfully");
-        navigate(`/task-repetitive${location.search}`);
+        navigate(`/repetitive-list${location.search}`);
       } else {
         if (response.data.code == "401") {
           toast.error(response.data.msg || "Task Duplicate Entry");
@@ -168,7 +168,7 @@ const EditRepetitive = () => {
       <div>
         <div className="flex mb-4 mt-6">
           <MdKeyboardBackspace
-            onClick={() => navigate(`/task-repetitive${location.search}`)}
+            onClick={() => navigate(`/repetitive-list${location.search}`)}
             className=" text-white bg-[#464D69] p-1 w-10 h-8 cursor-pointer rounded-2xl"
           />
           <h1 className="text-2xl text-[#464D69] font-semibold ml-2 content-center">
@@ -253,7 +253,7 @@ const EditRepetitive = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => navigate(`/task-repetitive${location.search}`)}
+                  onClick={() => navigate(`/repetitive-list${location.search}`)}
                   className={ButtonBack}
                 >
                   Back
