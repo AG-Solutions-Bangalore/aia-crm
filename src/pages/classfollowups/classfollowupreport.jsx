@@ -119,42 +119,57 @@ function ClassFollowupReport() {
         </div>
 
         <Card className="h-full w-full overflow-scroll p-4">
-          <table className="w-full min-w-max table-auto text-left">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th key={head} className="border-b border-gray-300 pb-4 pt-4">
-                    <Typography className="font-bold">{head}</Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-
-            <tbody>
-              {summary.map((item, index) => (
-                <tr key={index}>
-                  <td className="py-4">{index + 1}</td>
-
-                  <td className="py-4">{item.name}</td>
-
-                  <td className="py-4">{item.mobile}</td>
-                  <td className="py-4">{item.follow_course}</td>
-                  <td className="py-4">
-                    {item.follow_up_next_date
-                      ? Moment(item.follow_up_next_date).format("DD-MM-YYYY")
-                      : ""}
-                  </td>
-
-                  <td className="py-4">
-                    {item.follow_up_create_date
-                      ? Moment(item.follow_up_create_date).format("DD-MM-YYYY")
-                      : ""}
-                  </td>
-                  <td className="py-4">{item.follow_up_remarks}</td>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+              <thead>
+                <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                  {TABLE_HEAD.map((head) => (
+                    <th key={head} className="py-3 px-6 text-left">
+                      <Typography className="font-bold">{head}</Typography>
+                    </th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody className="text-gray-600 text-sm font-light">
+                {summary.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
+                    <td className="py-3 px-6 whitespace-nowrap">{index + 1}</td>
+                    <td className="py-3 pl-3 pr-2 whitespace-nowrap">
+                      {item.name}
+                    </td>
+
+                    <td className="py-3 pl-2 pr-3 whitespace-nowrap">
+                      {item.mobile}
+                    </td>
+
+                    <td className="py-3 px-6 whitespace-nowrap">
+                      {item.follow_course}
+                    </td>
+
+                    <td className="py-3 px-6 whitespace-nowrap">
+                      {item.follow_up_create_date
+                        ? Moment(item.follow_up_create_date).format(
+                            "DD-MM-YYYY",
+                          )
+                        : ""}
+                    </td>
+
+                    <td className="py-3 px-6 whitespace-nowrap">
+                      {item.follow_up_next_date
+                        ? Moment(item.follow_up_next_date).format("DD-MM-YYYY")
+                        : ""}
+                    </td>
+
+                    <td className="py-3 px-6">{item.follow_up_remarks}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Card>
       </Card>
     </Layout>
