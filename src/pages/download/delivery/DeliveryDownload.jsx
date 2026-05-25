@@ -43,6 +43,11 @@ const DownloadCommon = () => {
       path: "/download-website-enquiry",
       color: "from-teal-500 to-orange-400",
     },
+    {
+      label: "Class Followup",
+      path: "/class-followups",
+      color: "from-blue-500 to-cyan-400",
+    },
   ];
 
   return (

@@ -103,6 +103,8 @@ import TaskManager from "./pages/Dowloads/taskmanager/TaskManagerDownload";
 import TaskManagerReport from "./pages/Dowloads/taskmanager/TaskManagerReport";
 import FutureListTask from "./pages/taskManager/futureList/FutureListTask";
 import ClassFollowUpList from "./pages/classFollowup/ClassFollowUpList";
+import ClassFollowups from "./pages/classfollowups/classFollowups";
+import Classfollowupreport from "./pages/classfollowups/classfollowupreport";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -229,6 +231,10 @@ const App = () => {
             element={<ProtectedRoute element={<ClassFollowUp />} />}
           />
           <Route
+            path="/classfollowupreport"
+            element={<ProtectedRoute element={<Classfollowupreport />} />}
+          />
+          <Route
             path="/class-completed-followup"
             element={<ProtectedRoute element={<CompletedFollowUp />} />}
           />
@@ -248,6 +254,11 @@ const App = () => {
           <Route
             path="/enquiry"
             element={<ProtectedRoute element={<Enquiry />} />}
+          />
+          {/* Class Follow Up  */}
+          <Route
+            path="/class-followups"
+            element={<ProtectedRoute element={<ClassFollowups />} />}
           />
           <Route
             path="/download-website-enquiry"

@@ -1,7 +1,6 @@
 import Layout from "../../../layout/Layout";
 import PageTitle from "../../../components/common/PageTitle";
 import Dropdown from "../../../components/common/DropDown";
-import { FaArrowCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Button, Input } from "@material-tailwind/react";
 import { Card } from "@material-tailwind/react";
@@ -97,7 +96,7 @@ function Enquiry() {
     e.preventDefault();
     localStorage.setItem(
       "enquiry_date_from",
-      downloadEnquiry.enquiry_date_from
+      downloadEnquiry.enquiry_date_from,
     );
     localStorage.setItem("enquiry_date_to", downloadEnquiry.enquiry_date_to);
     localStorage.setItem("enquiry_status", downloadEnquiry.enquiry_status);
