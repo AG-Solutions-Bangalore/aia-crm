@@ -23,6 +23,12 @@ const ClassFollowUpCount = () => {
 
   const [course, setCourse] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [filters, setFilters] = useState({
+    date: "",
+    course: "",
+  });
+  const [filterCourse, setFilterCourse] = useState([]);
+  console.log("filterCourse", filterCourse);
   const [student, setClass] = useState({
     class_date: "",
   });
@@ -30,6 +36,29 @@ const ClassFollowUpCount = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  const handleFilterChange = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const clearFilters = () => {
+    setFilters({
+      date: "",
+      course: "",
+    });
+  };
+  const filteredData = cardData.filter((item) => {
+    const formattedDate = moment(item.class_follow_date).format("YYYY-MM-DD");
+
+    const matchDate = filters.date ? formattedDate === filters.date : true;
+
+    const matchCourse = filters.course
+      ? item.class_follow_course === filters.course
+      : true;
+
+    return matchDate && matchCourse;
+  });
 
   const handleClose = () => {
     setOpen(false);
@@ -52,9 +81,10 @@ const ClassFollowUpCount = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          }
+          },
         );
         setCardData(response.data?.student);
+        setFilterCourse(response.data?.student);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
@@ -106,7 +136,7 @@ const ClassFollowUpCount = () => {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        }
+        },
       );
       if (response.data.code == 200) {
         // setReloadData(true);
@@ -140,7 +170,7 @@ const ClassFollowUpCount = () => {
       <div className="mt-10 ">
         <div className="flex flex-col md:flex-row justify-between items-center bg-white mt-5 p-2 rounded-lg space-y-4 md:space-y-0">
           <h3 className="text-center md:text-left text-lg md:text-xl font-bold">
-            Class Follow Up Count
+            Follow-Ups History
           </h3>
           {/* <button
             onClick={handleClickOpen}
@@ -148,6 +178,57 @@ const ClassFollowUpCount = () => {
           >
             Create FollowUp
           </button> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+            {/* Date Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Filter by Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={filters.date}
+                onChange={handleFilterChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+
+            {/* Course Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Filter by Course
+              </label>
+
+              <select
+                name="course"
+                value={filters.course}
+                onChange={handleFilterChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">All Courses</option>
+
+                {[...new Set(cardData.map((item) => item.class_follow_course))]
+                  .sort((a, b) => a.localeCompare(b))
+                  .map((courseName, index) => (
+                    <option key={index} value={courseName}>
+                      {courseName}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            {/* Clear Button */}
+            <div>
+              <button
+                onClick={clearFilters}
+                className="bg-red-500 hover:bg-red-600 text-white px-2 py-2 rounded-lg shadow-md w-50"
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+
           <ClassFollowUpCreate
             className={ButtonCreate}
             onClick={handleClickOpen}
@@ -156,8 +237,8 @@ const ClassFollowUpCount = () => {
       </div>
 
       <div className="mt-5 grid grid-cols-1 md:grid-cols-6 gap-4">
-        {cardData &&
-          cardData.map((data, index) => (
+        {filteredData &&
+          filteredData.map((data, index) => (
             <div
               onClick={() => handleClick(data, index)}
               key={index}
