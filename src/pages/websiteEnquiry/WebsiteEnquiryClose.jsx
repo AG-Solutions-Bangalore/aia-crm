@@ -94,6 +94,14 @@ const WebsiteEnquiryClose = () => {
       },
     },
     {
+      name: "userWhatsapp",
+      label: "Whatsapp",
+      options: {
+        filter: false,
+        sort: false,
+      },
+    },
+    {
       name: "userLocation",
       label: "Loaction",
       options: {

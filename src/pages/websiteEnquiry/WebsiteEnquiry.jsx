@@ -92,6 +92,14 @@ const WebsiteEnquiry = () => {
         sort: false,
       },
     },
+    {
+      name: "userWhatsapp",
+      label: "Whatsapp",
+      options: {
+        filter: false,
+        sort: false,
+      },
+    },
 
     {
       name: "userLocation",
